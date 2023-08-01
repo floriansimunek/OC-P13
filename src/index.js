@@ -11,6 +11,7 @@ import Home from '@pages/Home';
 
 /* COMPONENTS */
 import Header from '@components/Header';
+import Footer from '@components/Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<Home />} />
             </Routes>
+            <Footer />
         </BrowserRouter>
     </React.StrictMode>
 );
