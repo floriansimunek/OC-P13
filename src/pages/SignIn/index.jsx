@@ -1,3 +1,3 @@
 export default function SignIn() {
-    return <main></main>;
+    return <main className="bgDark"></main>;
 }

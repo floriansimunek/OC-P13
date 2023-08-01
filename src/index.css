@@ -26,3 +26,7 @@ main {
     display: flex;
     flex-direction: column;
 }
+
+.bgDark {
+    background-color: #12002b;
+}
