@@ -6,6 +6,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+/* PAGES */
+import Home from '@pages/Home';
+
 /* COMPONENTS */
 import Header from '@components/Header';
 
@@ -15,7 +18,7 @@ root.render(
         <BrowserRouter>
             <Header />
             <Routes>
-                <Route path="/" element={<></>} />
+                <Route path="/" element={<Home />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
