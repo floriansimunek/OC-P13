@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 /* PAGES */
 import Home from '@pages/Home';
 import SignIn from '@pages/SignIn';
+import User from '@pages/User';
 
 /* COMPONENTS */
 import Header from '@components/Header';
@@ -22,6 +23,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/signIn" element={<SignIn />} />
+                <Route path="/user" element={<User />} />
             </Routes>
             <Footer />
         </BrowserRouter>
