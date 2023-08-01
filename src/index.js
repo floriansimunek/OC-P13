@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 /* PAGES */
 import Home from '@pages/Home';
+import SignIn from '@pages/SignIn';
 
 /* COMPONENTS */
 import Header from '@components/Header';
@@ -20,6 +21,7 @@ root.render(
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/signIn" element={<SignIn />} />
             </Routes>
             <Footer />
         </BrowserRouter>
