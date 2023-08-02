@@ -1,7 +1,7 @@
-import MockedData from '@mocks/UsersData';
+import MockedUsers from '@mocks/UsersData';
 
 export default class MockedService {
-    static fetchData() {
-        return MockedData;
+    static fetchData(id) {
+        return MockedUsers.find((user) => user.id === id);
     }
 }
