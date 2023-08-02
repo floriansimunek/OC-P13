@@ -7,7 +7,7 @@ export default function SignInForm() {
             <section className={styles.SignInContent}>
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
-                <form action="/user">
+                <form action="/user/1">
                     <div className={styles.inputWrapper}>
                         <label htmlFor="username">Username</label>
                         <input type="text" id="username" />

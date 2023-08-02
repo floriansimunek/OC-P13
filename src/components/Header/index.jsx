@@ -13,7 +13,7 @@ export default function Header() {
     const [isConnected, setIsConnected] = useState(false);
 
     useEffect(() => {
-        location.pathname === '/user'
+        location.pathname === '/user/1'
             ? setIsConnected(true)
             : setIsConnected(false);
     }, [location]);
