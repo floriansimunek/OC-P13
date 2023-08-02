@@ -7,7 +7,8 @@
             "@components/*": ["./src/components/*"],
             "@pages/*": ["./src/pages/*"],
             "@mocks/*": ["./src/mocks/*"],
-            "@entities/*": ["./src/entities/*"]
+            "@entities/*": ["./src/entities/*"],
+            "@services/*": ["./src/services/*"]
         }
     }
 }
