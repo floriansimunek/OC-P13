@@ -45,7 +45,7 @@ export default function User() {
 
     return (
         <main className="bgDark">
-            <UserHeader />
+            {userData && <UserHeader user={userData} />}
             <AccountsList accounts={ACCOUNTS} />
         </main>
     );
