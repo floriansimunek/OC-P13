@@ -1,3 +1,8 @@
+/* IMPORTS */
+import { useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import UserService from '@services/UserService';
+
 /* COMPONENTS */
 import UserHeader from '@components/UserHeader';
 import AccountsList from '@components/AccountsList';
@@ -22,6 +27,22 @@ const ACCOUNTS = [
 ];
 
 export default function User() {
+    const { id: userId } = useParams();
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const userData = await UserService.getUserData(userId);
+                setUserData(userData);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchData();
+    }, [userId]);
+
     return (
         <main className="bgDark">
             <UserHeader />
