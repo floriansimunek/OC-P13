@@ -1,5 +1,5 @@
 import MockedService from './MockedService';
-import User from '../entities/User';
+import User from '@entities/User';
 
 export default class UserService extends MockedService {
     static async getUserData(userId) {
