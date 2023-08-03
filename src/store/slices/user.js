@@ -31,15 +31,19 @@ export const handleLogin = (email, password, rememberMe) => {
     };
 };
 
-const userSlice = createSlice({
-    name: 'user',
-    initialState: {
+const initialState = () => {
+    return {
         id: null,
         firstName: null,
         lastName: null,
         token: null,
         error: null,
-    },
+    };
+};
+
+const userSlice = createSlice({
+    name: 'user',
+    initialState: initialState(),
     reducers: {
         loginSuccess(state, action) {
             state.token = action.payload.token;
@@ -62,9 +66,14 @@ const userSlice = createSlice({
             state.firstName = action.payload.body.firstName;
             state.lastName = action.payload.body.lastName;
         },
+        logout(state, action) {
+            localStorage.removeItem('token');
+            return initialState();
+        },
     },
 });
 
-export const { loginSuccess, loginFailure, setProfile } = userSlice.actions;
+export const { loginSuccess, loginFailure, setProfile, logout } =
+    userSlice.actions;
 
 export default userSlice.reducer;
