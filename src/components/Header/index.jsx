@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     selectUserFirstname,
+    selectUserId,
     selectUserIsConnected,
 } from '@/store/selectors/user';
 import { logout } from '@store/slices/user';
@@ -16,6 +17,7 @@ import logo from '@assets/argentBankLogo.png';
 export default function Header() {
     const isConnected = useSelector(selectUserIsConnected());
     const firstname = useSelector(selectUserFirstname());
+    const userId = useSelector(selectUserId());
     const dispatch = useDispatch();
 
     const handleLogout = () => {
@@ -33,7 +35,7 @@ export default function Header() {
             </Link>
             {isConnected ? (
                 <div>
-                    <Link to="/signIn" className={styles.mainNavItem}>
+                    <Link to={`/user/${userId}`} className={styles.mainNavItem}>
                         <i className="fa fa-user-circle"></i> {firstname}&nbsp;
                     </Link>
                     <Link
