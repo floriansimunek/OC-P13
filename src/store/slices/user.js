@@ -31,6 +31,24 @@ export const handleLogin = (email, password, rememberMe) => {
     };
 };
 
+export const handleUpdateProfile = (token, newFirstname, newLastName) => {
+    return async (dispatch) => {
+        try {
+            const updateData = await UserService.updateUserData(
+                token,
+                newFirstname,
+                newLastName
+            );
+
+            if (updateData.status === 200) {
+                dispatch(setProfile(updateData));
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+};
+
 const initialState = () => {
     return {
         id: null,

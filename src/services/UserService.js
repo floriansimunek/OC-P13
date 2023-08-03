@@ -35,4 +35,21 @@ export default class UserService extends Service {
             throw new Error(error);
         }
     }
+
+    static async updateUserData(token, firstName, lastName) {
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ firstName, lastName }),
+        };
+
+        try {
+            return await this.fetchData('/profile', requestOptions);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }

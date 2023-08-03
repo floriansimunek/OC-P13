@@ -11,9 +11,9 @@ export const selectUserId = () => {
 };
 
 export const selectUserFirstname = () => {
-    return (state) => state.user.firstname;
+    return (state) => state.user.firstName;
 };
 
 export const selectUserLastname = () => {
-    return (state) => state.user.lastname;
+    return (state) => state.user.lastName;
 };
