@@ -1,8 +1,8 @@
 /* IMPORTS */
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { handleLogin } from '@store/slices/user';
-import { selectUserError } from '@store/selectors/user';
+import { selectUserError, selectUserId } from '@store/selectors/user';
 import { useNavigate } from 'react-router';
 import store from '@/store';
 
@@ -11,6 +11,7 @@ import styles from './SignInForm.module.scss';
 
 export default function SignInForm() {
     const userLoginError = useSelector(selectUserError());
+    const userId = useSelector(selectUserId());
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,8 +20,12 @@ export default function SignInForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         store.dispatch(handleLogin(email, password, rememberMe));
-        if (userLoginError !== null) navigate('/');
     };
+
+    useEffect(() => {
+        if (userId === null) navigate('/SignIn');
+        else if (userLoginError === null) navigate(`/user/${userId}`);
+    }, [userId]);
 
     return (
         <div className={styles.main}>

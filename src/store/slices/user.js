@@ -34,6 +34,7 @@ export const handleLogin = (email, password, rememberMe) => {
 const userSlice = createSlice({
     name: 'user',
     initialState: {
+        id: null,
         firstName: null,
         lastName: null,
         token: null,
@@ -56,8 +57,10 @@ const userSlice = createSlice({
             localStorage.removeItem('token');
         },
         setProfile(state, action) {
-            state.firstName = action.payload.firstName;
-            state.lastName = action.payload.lastName;
+            state.error = null;
+            state.id = action.payload.body.id;
+            state.firstName = action.payload.body.firstName;
+            state.lastName = action.payload.body.lastName;
         },
     },
 });
