@@ -20,8 +20,7 @@ export default class UserService extends Service {
         };
 
         try {
-            const response = await this.fetchData('/login', requestOptions);
-            return response.data;
+            return await this.fetchData('/login', requestOptions);
         } catch (error) {
             throw new Error(error);
         }

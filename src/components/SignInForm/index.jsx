@@ -1,20 +1,22 @@
 /* IMPORTS */
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { login } from '@store/slices/user';
+import { handleLogin } from '@store/slices/user';
+import { selectorUserError } from '@store/selectors/user';
+import store from '@/store';
 
 /* CSS */
 import styles from './SignInForm.module.scss';
 
 export default function SignInForm() {
-    const dispatch = useDispatch();
+    const userLoginError = useSelector(selectorUserError());
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(login({ email, password, rememberMe }));
+        store.dispatch(handleLogin(email, password, rememberMe));
     };
 
     return (
@@ -49,6 +51,9 @@ export default function SignInForm() {
                     </div>
                     <button className={styles.SignInButton}>Sign In</button>
                 </form>
+                {userLoginError && (
+                    <p className={styles.error}>{userLoginError}</p>
+                )}
             </section>
         </div>
     );
