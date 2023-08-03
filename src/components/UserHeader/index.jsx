@@ -1,7 +1,13 @@
 /* IMPORTS */
 import { useState } from 'react';
-import { selectUserFirstname, selectUserLastname } from '@store/selectors/user';
+import {
+    selectUserFirstname,
+    selectUserLastname,
+    selectUserToken,
+} from '@store/selectors/user';
 import { useSelector } from 'react-redux';
+import { handleUpdateProfile } from '@store/slices/user';
+import store from '@/store';
 
 /* CSS */
 import styles from './UserHeader.module.scss';
@@ -9,10 +15,18 @@ import styles from './UserHeader.module.scss';
 export default function UserHeader({ user }) {
     const firstname = useSelector(selectUserFirstname());
     const lastname = useSelector(selectUserLastname());
+    const token = useSelector(selectUserToken());
+    const [newFirstname, setNewFirstname] = useState('');
+    const [newLastname, setNewLastname] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleToggleModal = () => {
         setIsModalOpen(!isModalOpen);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        store.dispatch(handleUpdateProfile(token, newFirstname, newLastname));
     };
 
     return (
@@ -34,13 +48,16 @@ export default function UserHeader({ user }) {
                         >
                             &#10060;
                         </div>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className={styles.inputWrapper}>
                                 <label htmlFor="firstname">Prénom</label>
                                 <input
                                     type="text"
                                     id="firstname"
-                                    value={firstname}
+                                    placeholder={firstname}
+                                    onChange={(e) =>
+                                        setNewFirstname(e.target.value)
+                                    }
                                 />
                             </div>
                             <div className={styles.inputWrapper}>
@@ -48,11 +65,17 @@ export default function UserHeader({ user }) {
                                 <input
                                     type="text"
                                     id="lastname"
-                                    value={lastname}
+                                    placeholder={lastname}
+                                    onChange={(e) =>
+                                        setNewLastname(e.target.value)
+                                    }
                                 />
                             </div>
-                            <button className={styles.modalButton}>
-                                Mettre à jours mes données
+                            <button
+                                className={styles.modalButton}
+                                type="submit"
+                            >
+                                Mettre à jour mes données
                             </button>
                         </form>
                         {/* {userLoginError && (

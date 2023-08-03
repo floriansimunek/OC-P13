@@ -31,6 +31,26 @@ export const handleLogin = (email, password, rememberMe) => {
     };
 };
 
+export const handleUpdateProfile = (token, newFirstname, newLastName) => {
+    return async (dispatch) => {
+        try {
+            const updateData = await UserService.updateUserData(
+                token,
+                newFirstname,
+                newLastName
+            );
+
+            console.log(updateData);
+
+            if (updateData.status === 200) {
+                dispatch(setProfile(updateData));
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+};
+
 const initialState = () => {
     return {
         id: null,
@@ -65,7 +85,6 @@ const userSlice = createSlice({
             state.id = action.payload.body.id;
             state.firstName = action.payload.body.firstName;
             state.lastName = action.payload.body.lastName;
-            console.log(state.firstName, state.lastName);
         },
         logout(state, action) {
             localStorage.removeItem('token');

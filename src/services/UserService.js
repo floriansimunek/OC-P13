@@ -36,13 +36,14 @@ export default class UserService extends Service {
         }
     }
 
-    static async updateUserData(token) {
+    static async updateUserData(token, firstName, lastName) {
         const requestOptions = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
+            body: JSON.stringify({ firstName, lastName }),
         };
 
         try {
