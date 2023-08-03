@@ -14,7 +14,7 @@ export const handleLogin = (email, password, rememberMe) => {
                             rememberMe: rememberMe,
                         })
                     );
-                    const userData = await UserService.getUser(
+                    const userData = await UserService.getUserData(
                         loginData.body.token
                     );
                     dispatch(setProfile(userData));
