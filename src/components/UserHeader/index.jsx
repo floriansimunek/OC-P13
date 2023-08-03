@@ -16,8 +16,8 @@ export default function UserHeader({ user }) {
     const firstname = useSelector(selectUserFirstname());
     const lastname = useSelector(selectUserLastname());
     const token = useSelector(selectUserToken());
-    const [newFirstname, setNewFirstname] = useState('');
-    const [newLastname, setNewLastname] = useState('');
+    const [newFirstname, setNewFirstname] = useState(firstname);
+    const [newLastname, setNewLastname] = useState(lastname);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleToggleModal = () => {
@@ -27,6 +27,7 @@ export default function UserHeader({ user }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         store.dispatch(handleUpdateProfile(token, newFirstname, newLastname));
+        handleToggleModal();
     };
 
     return (
@@ -54,7 +55,7 @@ export default function UserHeader({ user }) {
                                 <input
                                     type="text"
                                     id="firstname"
-                                    placeholder={firstname}
+                                    value={newFirstname}
                                     onChange={(e) =>
                                         setNewFirstname(e.target.value)
                                     }
@@ -65,7 +66,7 @@ export default function UserHeader({ user }) {
                                 <input
                                     type="text"
                                     id="lastname"
-                                    placeholder={lastname}
+                                    value={newLastname}
                                     onChange={(e) =>
                                         setNewLastname(e.target.value)
                                     }
