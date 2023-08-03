@@ -1,13 +1,13 @@
 /* IMPORTS */
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { selectUserToken } from '@store/selectors/user';
 import UserService from '@services/UserService';
 
 /* COMPONENTS */
 import UserHeader from '@components/UserHeader';
 import AccountsList from '@components/AccountsList';
-import { selectUserToken } from '@/store/selectors/user';
 
 /* DATA */
 const ACCOUNTS = [
@@ -29,15 +29,16 @@ const ACCOUNTS = [
 ];
 
 export default function User() {
+    const navigate = useNavigate();
     const { id: userId } = useParams();
     const token = useSelector(selectUserToken());
-    console.log(token);
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const userData = await UserService.getUserData(token);
+                if (userData.status === 401) navigate('/SignIn');
                 setUserData(userData.body);
             } catch (error) {
                 console.error(error);
