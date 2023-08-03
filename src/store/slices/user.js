@@ -31,6 +31,30 @@ export const handleLogin = (email, password, rememberMe) => {
     };
 };
 
+export const handleAutoLogin = () => {
+    return async (dispatch) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const userData = await UserService.getUserData(token);
+                    dispatch(
+                        loginSuccess({
+                            token: token,
+                            rememberMe: true,
+                        })
+                    );
+                    dispatch(setProfile(userData));
+                } catch (error) {
+                    throw new Error(error);
+                }
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+};
+
 export const handleUpdateProfile = (token, newFirstname, newLastName) => {
     return async (dispatch) => {
         try {
