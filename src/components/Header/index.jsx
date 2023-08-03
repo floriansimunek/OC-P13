@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserToken } from '@/store/selectors/user';
 import { logout } from '@store/slices/user';
-import store from '@/store';
 
 /* ASSETS */
 import logo from '@assets/argentBankLogo.png';
