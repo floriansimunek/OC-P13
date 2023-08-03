@@ -15,9 +15,6 @@ export default function SignInForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(login({ email, password, rememberMe }));
-        setEmail('');
-        setPassword('');
-        setRememberMe(false);
     };
 
     return (
