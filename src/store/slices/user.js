@@ -4,21 +4,25 @@ const { createSlice } = require('@reduxjs/toolkit');
 export const handleLogin = (email, password, rememberMe) => {
     return async (dispatch) => {
         try {
-            const data = await UserService.login(email, password);
+            const loginData = await UserService.login(email, password);
 
-            switch (data.status) {
+            switch (loginData.status) {
                 case 200:
                     dispatch(
                         loginSuccess({
-                            token: data.body.token,
+                            token: loginData.body.token,
                             rememberMe: rememberMe,
                         })
                     );
+                    const userData = await UserService.getUser(
+                        loginData.body.token
+                    );
+                    dispatch(setProfile(userData));
                     break;
                 case 400:
                 case 500:
                 default:
-                    dispatch(loginFailure(data.message));
+                    dispatch(loginFailure(loginData.message));
                     break;
             }
         } catch (error) {
@@ -51,9 +55,13 @@ const userSlice = createSlice({
             state.error = action.payload;
             localStorage.removeItem('token');
         },
+        setProfile(state, action) {
+            state.firstName = action.payload.firstName;
+            state.lastName = action.payload.lastName;
+        },
     },
 });
 
-export const { loginSuccess, loginFailure } = userSlice.actions;
+export const { loginSuccess, loginFailure, setProfile } = userSlice.actions;
 
 export default userSlice.reducer;

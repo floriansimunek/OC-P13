@@ -25,4 +25,20 @@ export default class UserService extends Service {
             throw new Error(error);
         }
     }
+
+    static async getUser(token) {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        try {
+            return await this.fetchData('/profile', requestOptions);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 }
