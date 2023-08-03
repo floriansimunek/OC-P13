@@ -1,9 +1,8 @@
 /* IMPORTS */
-import { useNavigate, useParams } from 'react-router';
-import { useEffect, useState } from 'react';
+import { selectUserIsConnected } from '@store/selectors/user';
 import { useSelector } from 'react-redux';
-import { selectUserToken } from '@store/selectors/user';
-import UserService from '@services/UserService';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 /* COMPONENTS */
 import UserHeader from '@components/UserHeader';
@@ -30,27 +29,17 @@ const ACCOUNTS = [
 
 export default function User() {
     const navigate = useNavigate();
-    const { id: userId } = useParams();
-    const token = useSelector(selectUserToken());
-    const [userData, setUserData] = useState(null);
+    const isConnected = useSelector(selectUserIsConnected());
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                const userData = await UserService.getUserData(token);
-                if (userData.status === 401) navigate('/SignIn');
-                setUserData(userData.body);
-            } catch (error) {
-                console.error(error);
-            }
+        if (!isConnected) {
+            navigate('/');
         }
-
-        fetchData();
-    }, [userId, userData]);
+    }, [isConnected]);
 
     return (
         <main className="bgDark">
-            {userData && <UserHeader user={userData} />}
+            <UserHeader />
             <AccountsList accounts={ACCOUNTS} />
         </main>
     );

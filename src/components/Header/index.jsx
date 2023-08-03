@@ -3,23 +3,20 @@ import styles from './Header.module.scss';
 
 /* IMPORTS */
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserFirstname, selectUserToken } from '@/store/selectors/user';
+import {
+    selectUserFirstname,
+    selectUserIsConnected,
+} from '@/store/selectors/user';
 import { logout } from '@store/slices/user';
 
 /* ASSETS */
 import logo from '@assets/argentBankLogo.png';
 
 export default function Header() {
-    const token = useSelector(selectUserToken());
+    const isConnected = useSelector(selectUserIsConnected());
     const firstname = useSelector(selectUserFirstname());
-    const [isConnected, setIsConnected] = useState(false);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setIsConnected(!!token);
-    }, [token, dispatch]);
 
     const handleLogout = () => {
         dispatch(logout());

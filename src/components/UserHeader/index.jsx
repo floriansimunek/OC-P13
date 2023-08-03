@@ -12,7 +12,7 @@ import store from '@/store';
 /* CSS */
 import styles from './UserHeader.module.scss';
 
-export default function UserHeader({ user }) {
+export default function UserHeader() {
     const firstname = useSelector(selectUserFirstname());
     const lastname = useSelector(selectUserLastname());
     const token = useSelector(selectUserToken());
@@ -35,7 +35,7 @@ export default function UserHeader({ user }) {
             <h1>
                 Welcome back
                 <br />
-                {`${user.firstName} ${user.lastName}`}
+                {`${firstname} ${lastname}`}
             </h1>
             <button className={styles.editButton} onClick={handleToggleModal}>
                 Edit Name
@@ -79,9 +79,6 @@ export default function UserHeader({ user }) {
                                 Mettre à jour mes données
                             </button>
                         </form>
-                        {/* {userLoginError && (
-                            <p className={styles.error}>{userLoginError}</p>
-                        )} */}
                     </div>
                 </div>
             )}

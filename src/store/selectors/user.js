@@ -1,3 +1,7 @@
+export const selectUserIsConnected = () => {
+    return (state) => !!state.user.token;
+};
+
 export const selectUserError = () => {
     return (state) => state.user.error;
 };
