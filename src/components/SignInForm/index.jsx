@@ -1,7 +1,7 @@
 /* IMPORTS */
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { handleLogin } from '@store/slices/user';
+import { handleAutoLogin, handleLogin } from '@store/slices/user';
 import { selectUserError, selectUserId } from '@store/selectors/user';
 import { useNavigate } from 'react-router';
 import store from '@/store';
