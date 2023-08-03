@@ -1,7 +1,7 @@
 /* IMPORTS */
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { handleAutoLogin, handleLogin } from '@store/slices/user';
+import { handleLogin } from '@store/features';
 import { selectUserError, selectUserId } from '@store/selectors/user';
 import { useNavigate } from 'react-router';
 import store from '@/store';
@@ -25,7 +25,7 @@ export default function SignInForm() {
     useEffect(() => {
         if (userId === null) navigate('/SignIn');
         else if (userLoginError === null) navigate(`/user/${userId}`);
-    }, [userId]);
+    }, [userId, userLoginError, navigate]);
 
     return (
         <div className={styles.main}>

@@ -1,7 +1,7 @@
 /* IMPORTS */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { handleAutoLogin } from '@store/slices/user';
+import { handleAutoLogin } from '@store/features';
 import store from '@/store';
 
 /* PAGES */

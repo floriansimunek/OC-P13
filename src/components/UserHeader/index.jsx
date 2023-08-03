@@ -6,7 +6,7 @@ import {
     selectUserToken,
 } from '@store/selectors/user';
 import { useSelector } from 'react-redux';
-import { handleUpdateProfile } from '@store/slices/user';
+import { handleUpdateProfile } from '@store/features';
 import store from '@/store';
 
 /* CSS */
