@@ -1,10 +1,14 @@
 /* IMPORTS */
 import { useState } from 'react';
+import { selectUserFirstname, selectUserLastname } from '@store/selectors/user';
+import { useSelector } from 'react-redux';
 
 /* CSS */
 import styles from './UserHeader.module.scss';
 
 export default function UserHeader({ user }) {
+    const firstname = useSelector(selectUserFirstname());
+    const lastname = useSelector(selectUserLastname());
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleToggleModal = () => {
@@ -33,11 +37,19 @@ export default function UserHeader({ user }) {
                         <form>
                             <div className={styles.inputWrapper}>
                                 <label htmlFor="firstname">Prénom</label>
-                                <input type="text" id="firstname" />
+                                <input
+                                    type="text"
+                                    id="firstname"
+                                    value={firstname}
+                                />
                             </div>
                             <div className={styles.inputWrapper}>
                                 <label htmlFor="lastname">Nom</label>
-                                <input type="text" id="lastname" />
+                                <input
+                                    type="text"
+                                    id="lastname"
+                                    value={lastname}
+                                />
                             </div>
                             <button className={styles.modalButton}>
                                 Mettre à jours mes données

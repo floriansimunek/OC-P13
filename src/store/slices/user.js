@@ -65,6 +65,7 @@ const userSlice = createSlice({
             state.id = action.payload.body.id;
             state.firstName = action.payload.body.firstName;
             state.lastName = action.payload.body.lastName;
+            console.log(state.firstName, state.lastName);
         },
         logout(state, action) {
             localStorage.removeItem('token');
