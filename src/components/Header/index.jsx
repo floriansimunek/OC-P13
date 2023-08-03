@@ -1,22 +1,22 @@
 /* CSS */
 import styles from './Header.module.scss';
 
-/* DEPENDANCIES */
-import { Link, useLocation } from 'react-router-dom';
+/* IMPORTS */
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUserToken } from '@/store/selectors/user';
 
 /* ASSETS */
 import logo from '@assets/argentBankLogo.png';
 
 export default function Header() {
-    const location = useLocation();
+    const token = useSelector(selectUserToken);
     const [isConnected, setIsConnected] = useState(false);
 
     useEffect(() => {
-        location.pathname === '/user/1'
-            ? setIsConnected(true)
-            : setIsConnected(false);
-    }, [location]);
+        if (token) setIsConnected(true);
+    }, [token]);
 
     return (
         <header className={styles.mainNav}>
