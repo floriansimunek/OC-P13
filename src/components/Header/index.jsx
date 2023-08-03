@@ -5,7 +5,7 @@ import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserToken } from '@/store/selectors/user';
+import { selectUserFirstname, selectUserToken } from '@/store/selectors/user';
 import { logout } from '@store/slices/user';
 
 /* ASSETS */
@@ -13,6 +13,7 @@ import logo from '@assets/argentBankLogo.png';
 
 export default function Header() {
     const token = useSelector(selectUserToken());
+    const firstname = useSelector(selectUserFirstname());
     const [isConnected, setIsConnected] = useState(false);
     const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ export default function Header() {
             {isConnected ? (
                 <div>
                     <Link to="/signIn" className={styles.mainNavItem}>
-                        <i className="fa fa-user-circle"></i> Tony&nbsp;
+                        <i className="fa fa-user-circle"></i> {firstname}&nbsp;
                     </Link>
                     <Link
                         to="/"
