@@ -40,8 +40,6 @@ export const handleUpdateProfile = (token, newFirstname, newLastName) => {
                 newLastName
             );
 
-            console.log(updateData);
-
             if (updateData.status === 200) {
                 dispatch(setProfile(updateData));
             }

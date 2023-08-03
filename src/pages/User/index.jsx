@@ -46,7 +46,7 @@ export default function User() {
         }
 
         fetchData();
-    }, [userId]);
+    }, [userId, userData]);
 
     return (
         <main className="bgDark">
