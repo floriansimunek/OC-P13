@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { handleLogin } from '@store/slices/user';
 import { selectUserError } from '@store/selectors/user';
+import { useNavigate } from 'react-router';
 import store from '@/store';
 
 /* CSS */
@@ -10,6 +11,7 @@ import styles from './SignInForm.module.scss';
 
 export default function SignInForm() {
     const userLoginError = useSelector(selectUserError());
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
@@ -17,6 +19,7 @@ export default function SignInForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         store.dispatch(handleLogin(email, password, rememberMe));
+        if (userLoginError !== null) navigate('/');
     };
 
     return (
