@@ -1,7 +1,9 @@
 import UserService from '@services/UserService';
 import { loginSuccess, loginFailure, setProfile } from '../slices/user';
 
+/** @returns {import("redux").Action} */
 export const handleLogin = (email, password, rememberMe) => {
+    // @ts-ignore
     return async (dispatch) => {
         try {
             const loginData = await UserService.login(email, password);

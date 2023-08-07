@@ -1,10 +1,9 @@
 /* IMPORTS */
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { handleLogin } from '@store/features';
 import { selectUserError, selectUserId } from '@store/selectors/user';
 import { useNavigate } from 'react-router';
-import store from '@/store';
 
 /* CSS */
 import styles from './SignInForm.module.scss';
@@ -13,13 +12,14 @@ export default function SignInForm() {
     const userLoginError = useSelector(selectUserError());
     const userId = useSelector(selectUserId());
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        store.dispatch(handleLogin(email, password, rememberMe));
+        dispatch(handleLogin(email, password, rememberMe));
     };
 
     useEffect(() => {
