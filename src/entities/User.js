@@ -5,10 +5,13 @@ export default class User {
     lastName;
     email;
 
+    token;
+
     constructor(userData) {
         this.id = userData.id;
         this.firstName = userData.firstName;
         this.lastName = userData.lastName;
         this.email = userData.email;
+        this.token = userData.token;
     }
 }
