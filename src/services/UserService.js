@@ -1,7 +1,6 @@
 /* IMPORTS */
 import MockedService from './MockedService';
 import Service from './Service';
-import User from '@entities/User';
 
 export default class UserService extends Service {
     static baseUrl = 'http://localhost:3001/api/v1/user';
