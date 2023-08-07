@@ -6,6 +6,7 @@ export default class User {
     email;
 
     token;
+    error;
 
     constructor(userData) {
         this.id = userData.id;
@@ -13,5 +14,6 @@ export default class User {
         this.lastName = userData.lastName;
         this.email = userData.email;
         this.token = userData.token;
+        this.error = userData.error;
     }
 }
