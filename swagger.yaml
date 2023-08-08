@@ -134,6 +134,35 @@ paths:
                         $ref: '#/definitions/ApiResponse'
                 '500':
                     description: Internal Server Error
+    /user/accounts/{accountId}:
+        get:
+            tags:
+                - User Accounts
+            description: API for Accounts
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Update user profile attributes
+                  required: true
+                  schema:
+                      $ref: '#/definitions/Account'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Account data successfully retrieved
+                    schema:
+                        $ref: '#/definitions/AccountResponse'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
 securityDefinitions:
     Bearer:
         type: apiKey
