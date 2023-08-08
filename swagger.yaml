@@ -244,6 +244,35 @@ paths:
                         $ref: '#/definitions/ApiResponse'
                 '500':
                     description: Internal Server Error
+    /user/accounts/{accountId}/transactions/{transactionId}/notes:
+        put:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Change transaction notes
+                  required: true
+                  schema:
+                      $ref: '#/definitions/TransactionsUpdateNotes'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction notes successfully changed
+                    schema:
+                        $ref: '#/definitions/TransactionsUpdateNotes'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
 securityDefinitions:
     Bearer:
         type: apiKey
@@ -341,6 +370,11 @@ definitions:
             items:
                 $ref: '#/definitions/Transaction'
     TransactionsUpdateCategory:
+        type: object
+        properties:
+            category:
+                type: string
+    TransactionsUpdateNotes:
         type: object
         properties:
             category:
