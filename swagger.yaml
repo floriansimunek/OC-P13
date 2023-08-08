@@ -164,11 +164,26 @@ definitions:
                 type: string
             lastName:
                 type: string
+    Account:
+        type: object
+        properties:
+            id:
+                type: string
+    AccountResponse:
+        type: object
+        properties:
+            items:
+                $ref: '#/definitions/Transaction'
     Transaction:
         type: object
         properties:
             id:
-                type: integer
+                type: string
+    TransactionResponse:
+        type: object
+        properties:
+            id:
+                type: string
             date:
                 type: string
             description:
