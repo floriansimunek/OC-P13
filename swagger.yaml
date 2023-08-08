@@ -230,14 +230,14 @@ paths:
                   description: Add transaction category
                   required: true
                   schema:
-                      $ref: '#/definitions/TransactionsUpdateCategory'
+                      $ref: '#/definitions/TransactionsCategory'
             produces:
                 - application/json
             responses:
                 '200':
                     description: Transaction category successfully added
                     schema:
-                        $ref: '#/definitions/TransactionsUpdateCategory'
+                        $ref: '#/definitions/TransactionsCategory'
                 '401':
                     description: Unauthorized - User is not authorized to access this resource
                     schema:
@@ -258,14 +258,14 @@ paths:
                   description: Change transaction category
                   required: true
                   schema:
-                      $ref: '#/definitions/TransactionsUpdateCategory'
+                      $ref: '#/definitions/TransactionsCategory'
             produces:
                 - application/json
             responses:
                 '200':
                     description: Transaction category successfully changed
                     schema:
-                        $ref: '#/definitions/TransactionsUpdateCategory'
+                        $ref: '#/definitions/TransactionsCategory'
                 '401':
                     description: Unauthorized - User is not authorized to access this resource
                     schema:
@@ -315,14 +315,14 @@ paths:
                   description: Add transaction notes
                   required: true
                   schema:
-                      $ref: '#/definitions/TransactionsUpdateNotes'
+                      $ref: '#/definitions/TransactionsNotes'
             produces:
                 - application/json
             responses:
                 '200':
                     description: Transaction notes successfully added
                     schema:
-                        $ref: '#/definitions/TransactionsUpdateNotes'
+                        $ref: '#/definitions/TransactionsNotes'
                 '401':
                     description: Unauthorized - User is not authorized to access this resource
                     schema:
@@ -343,14 +343,14 @@ paths:
                   description: Change transaction notes
                   required: true
                   schema:
-                      $ref: '#/definitions/TransactionsUpdateNotes'
+                      $ref: '#/definitions/TransactionsNotes'
             produces:
                 - application/json
             responses:
                 '200':
                     description: Transaction notes successfully changed
                     schema:
-                        $ref: '#/definitions/TransactionsUpdateNotes'
+                        $ref: '#/definitions/TransactionsNotes'
                 '401':
                     description: Unauthorized - User is not authorized to access this resource
                     schema:
@@ -481,12 +481,12 @@ definitions:
         properties:
             items:
                 $ref: '#/definitions/Transaction'
-    TransactionsUpdateCategory:
+    TransactionsCategory:
         type: object
         properties:
             category:
                 type: string
-    TransactionsUpdateNotes:
+    TransactionsNotes:
         type: object
         properties:
             category:
