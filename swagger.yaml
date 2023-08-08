@@ -1,0 +1,493 @@
+swagger: '2.0'
+info:
+    title: Bank Argent API documentation
+    description: Contains all available API endpoints in this codebase
+    version: '1.0.0'
+    termsOfService: 'http://swagger.io/terms/'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+    - http
+paths:
+    /user/login:
+        post:
+            tags:
+                - User Module
+            summary: Login
+            description: API for Login
+            parameters:
+                - in: body
+                  name: body
+                  description: Login Payload
+                  required: true
+                  schema:
+                      $ref: '#/definitions/Login'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Login Successfully
+                    schema:
+                        $ref: '#/definitions/LoginResponse'
+                '400':
+                    description: Invalid Fields
+                '500':
+                    description: Internal Server Error
+    /user/signup:
+        post:
+            tags:
+                - User Module
+            summary: Signup
+            description: API for Signup
+            parameters:
+                - in: body
+                  name: body
+                  description: Signup Payload
+                  required: true
+                  schema:
+                      $ref: '#/definitions/User'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Signup Successfully
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '400':
+                    description: Invalid Fields
+                '500':
+                    description: Internal Server Error
+    /user/profile:
+        post:
+            security:
+                - Bearer: []
+            tags:
+                - User Module
+            summary: User Profile API
+            description: API for fetching a user profile
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: User profile retrieved successully
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '400':
+                    description: Invalid Fields
+                '500':
+                    description: Internal Server Error
+        put:
+            security:
+                - Bearer: []
+            tags:
+                - User Module
+            summary: User Profile API
+            description: API for updating a user profile
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Update user profile attributes
+                  required: true
+                  schema:
+                      $ref: '#/definitions/UserProfile'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: User profile retrieved successully
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '400':
+                    description: Invalid Fields
+                '500':
+                    description: Internal Server Error
+    /user/accounts:
+        get:
+            tags:
+                - User Accounts
+            summary: User Accounts API
+            description: API for Accounts
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Accounts data successfully retrieved
+                    schema:
+                        $ref: '#/definitions/AccountsResponse'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+    /user/accounts/{accountId}:
+        get:
+            tags:
+                - User Accounts
+            description: API for Accounts
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Get user account data
+                  required: true
+                  schema:
+                      $ref: '#/definitions/Account'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Account data successfully retrieved
+                    schema:
+                        $ref: '#/definitions/AccountResponse'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+    /user/accounts/{accountId}/transactions:
+        get:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transactions data successfully retrieved
+                    schema:
+                        $ref: '#/definitions/TransactionsResponse'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+    /user/accounts/{accountId}/transactions/{transactionId}:
+        get:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Get user transaction data
+                  required: true
+                  schema:
+                      $ref: '#/definitions/Transaction'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction data successfully retrieved
+                    schema:
+                        $ref: '#/definitions/TransactionResponse'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+    /user/accounts/{accountId}/transactions/{transactionId}/category:
+        post:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Add transaction category
+                  required: true
+                  schema:
+                      $ref: '#/definitions/TransactionsUpdateCategory'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction category successfully added
+                    schema:
+                        $ref: '#/definitions/TransactionsUpdateCategory'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+        put:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Change transaction category
+                  required: true
+                  schema:
+                      $ref: '#/definitions/TransactionsUpdateCategory'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction category successfully changed
+                    schema:
+                        $ref: '#/definitions/TransactionsUpdateCategory'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+        delete:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Delete transaction category
+                  required: true
+                  schema:
+                      $ref: '#/definitions/Transaction'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction category successfully deleted
+                    schema:
+                        $ref: '#/definitions/Transaction'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+    /user/accounts/{accountId}/transactions/{transactionId}/notes:
+        post:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Add transaction notes
+                  required: true
+                  schema:
+                      $ref: '#/definitions/TransactionsUpdateNotes'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction notes successfully added
+                    schema:
+                        $ref: '#/definitions/TransactionsUpdateNotes'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+        put:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Change transaction notes
+                  required: true
+                  schema:
+                      $ref: '#/definitions/TransactionsUpdateNotes'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction notes successfully changed
+                    schema:
+                        $ref: '#/definitions/TransactionsUpdateNotes'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+        delete:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Delete transaction notes
+                  required: true
+                  schema:
+                      $ref: '#/definitions/Transaction'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction notes successfully deleted
+                    schema:
+                        $ref: '#/definitions/Transaction'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
+securityDefinitions:
+    Bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+definitions:
+    User:
+        properties:
+            email:
+                type: string
+                description: user email
+            password:
+                type: string
+                description: user password
+            firstName:
+                type: string
+                description: user first name
+            lastName:
+                type: string
+                description: user last name
+    Login:
+        properties:
+            email:
+                type: string
+                description: user email
+            password:
+                type: string
+                description: user password
+    ApiResponse:
+        type: object
+        properties:
+            status:
+                type: integer
+            message:
+                type: string
+            body:
+                type: object
+                properties:
+                    id:
+                        type: string
+                    email:
+                        type: string
+    LoginResponse:
+        type: object
+        properties:
+            token:
+                type: string
+    UserProfile:
+        type: object
+        properties:
+            firstName:
+                type: string
+            lastName:
+                type: string
+    Account:
+        type: object
+        properties:
+            id:
+                type: string
+    AccountResponse:
+        type: object
+        properties:
+            items:
+                $ref: '#/definitions/Transaction'
+    AccountsResponse:
+        type: object
+        properties:
+            items:
+                $ref: '#/definitions/Account'
+    Transaction:
+        type: object
+        properties:
+            id:
+                type: string
+    TransactionResponse:
+        type: object
+        properties:
+            id:
+                type: string
+            date:
+                type: string
+            description:
+                type: string
+            amount:
+                type: number
+            type:
+                type: string
+            category:
+                type: string
+            notes:
+                type: string
+    TransactionsResponse:
+        type: object
+        properties:
+            items:
+                $ref: '#/definitions/Transaction'
+    TransactionsUpdateCategory:
+        type: object
+        properties:
+            category:
+                type: string
+    TransactionsUpdateNotes:
+        type: object
+        properties:
+            category:
+                type: string
