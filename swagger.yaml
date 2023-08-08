@@ -215,6 +215,35 @@ paths:
                         $ref: '#/definitions/ApiResponse'
                 '500':
                     description: Internal Server Error
+    /user/accounts/{accountId}/transactions/{transactionId}/category:
+        put:
+            tags:
+                - User Transactions
+            description: API for Transactions
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Attach Bearer JWT token
+                  required: true
+                - in: body
+                  name: body
+                  description: Change transaction category
+                  required: true
+                  schema:
+                      $ref: '#/definitions/TransactionsUpdateCategory'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: Transaction category successfully changed
+                    schema:
+                        $ref: '#/definitions/TransactionsUpdateCategory'
+                '401':
+                    description: Unauthorized - User is not authorized to access this resource
+                    schema:
+                        $ref: '#/definitions/ApiResponse'
+                '500':
+                    description: Internal Server Error
 securityDefinitions:
     Bearer:
         type: apiKey
@@ -311,3 +340,8 @@ definitions:
         properties:
             items:
                 $ref: '#/definitions/Transaction'
+    TransactionsUpdateCategory:
+        type: object
+        properties:
+            category:
+                type: string
