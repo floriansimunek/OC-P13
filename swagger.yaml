@@ -68,6 +68,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
             produces:
@@ -91,6 +92,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -119,6 +121,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
             produces:
@@ -142,6 +145,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -150,6 +154,10 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/Account'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -171,8 +179,13 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -194,6 +207,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -202,6 +216,14 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/Transaction'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
+                - in: path
+                  name: transactionId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -223,6 +245,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -231,6 +254,14 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/TransactionsCategory'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
+                - in: path
+                  name: transactionId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -251,6 +282,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -259,6 +291,14 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/TransactionsCategory'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
+                - in: path
+                  name: transactionId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -279,6 +319,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -287,6 +328,14 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/Transaction'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
+                - in: path
+                  name: transactionId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -308,6 +357,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -316,6 +366,14 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/TransactionsNotes'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
+                - in: path
+                  name: transactionId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -336,6 +394,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -344,6 +403,14 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/TransactionsNotes'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
+                - in: path
+                  name: transactionId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
@@ -364,6 +431,7 @@ paths:
             parameters:
                 - in: header
                   name: Authorization
+                  type: string
                   description: Attach Bearer JWT token
                   required: true
                 - in: body
@@ -372,6 +440,14 @@ paths:
                   required: true
                   schema:
                       $ref: '#/definitions/Transaction'
+                - in: path
+                  name: accountId
+                  required: true
+                  type: string
+                - in: path
+                  name: transactionId
+                  required: true
+                  type: string
             produces:
                 - application/json
             responses:
